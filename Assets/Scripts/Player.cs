@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private Rigidbody rigidBody;
     private float yRot;
     public float mouseSensitivity = 5f;
+    AudioSource audioSource;
+    public AudioClip footstep1;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -90,4 +93,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2.1f);
         anim.SetBool("Att1", false);
     }
+    void PlaySoundEffect()
+    {
+        audioSource.PlayOneShot(footstep1, 0.7f); // play audio clip with volume 0.7
+    }
+
 }
